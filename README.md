@@ -1,6 +1,8 @@
 # nextjs-spa
 Attempt to create a single page app using Next.js
 
+Unfortunately, dynamic routes are incompatible with static export (both of which are necessary for a single page app). Run the project to see for yourself.
+
 ## Installation
 ```
 npm install
@@ -18,21 +20,31 @@ npm run build
 ```
 
 ## What I did
-Use the Next.js project setup tool
-```
-npx create-next-app@latest
-```
-This installs `create-next-app@14.0.1`
+1. Initialize project using the [recommended tool](https://nextjs.org/docs/getting-started/installation#automatic-installation)
+    ```
+    npx create-next-app@latest
+    ```
+    Today this installs `create-next-app@14.0.1`
 
-Accept all the default settings
-* TypeScript **yes**
-* ESLint **yes**
-* Tailwind CSS **no**
-* 'src/' directory **yes**
-* App Router **yes**
-* custom import alias **no**
+1. Accept all the default settings
+    * TypeScript **yes**
+    * ESLint **yes**
+    * Tailwind CSS **no**
+    * 'src/' directory **yes**
+    * App Router **yes**
+    * custom import alias **no**
 
-## The following README was auto-generated
+1. Add dynamic route `/users/[userId]` and associated pages
+
+1. In `next.config.js` set output to `export` to enable [static exports](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
+
+    This causes an error in dynamic routes because they must be resolved at build time
+    ```
+    Error: Page "/users/[userId]/page" is missing exported function "generateStaticParams()", which is required with "output: export" config.
+    ```
+
+
+## *The following README was auto-generated*
 
 > This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 >
